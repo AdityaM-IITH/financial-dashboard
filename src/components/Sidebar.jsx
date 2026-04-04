@@ -27,6 +27,22 @@ function Sidebar({activePage, setActivePage}) {
           ))}
         </nav>
       </div>
+      <div className="flex md:hidden items-center gap-2 ml-auto">
+        <select
+          value={role}
+          onChange={e => setRole(e.target.value)}
+          className="border dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-2 py-1 text-xs"
+        >
+          <option value="viewer">Viewer</option>
+          <option value="admin">Admin</option>
+        </select>
+        <button
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className="border dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg px-2 py-1 text-xs"
+        >
+          {theme === 'dark' ? '☀️' : '🌙'}
+        </button>
+      </div>
       <div className="hidden md:flex flex-col gap-2">
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
