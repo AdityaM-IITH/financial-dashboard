@@ -5,7 +5,7 @@ import SpendingChart from '../components/SpendingChart'
 function Dashboard() {
   return (
     <div>
-      <h2 className="text-2xl font-bold text-gray-800 mb-6">Dashboard</h2>
+      <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-6">Dashboard</h2>
       <SummaryCards />
       <BalanceChart />
       <SpendingChart />
