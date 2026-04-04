@@ -27,6 +27,7 @@ function Transactions() {
       if (sortOrder === 'oldest') return new Date(a.date) - new Date(b.date)
       if (sortOrder === 'highest') return b.amount - a.amount
       if (sortOrder === 'lowest') return a.amount - b.amount
+      return 0;
     })
 
   const handleAddTransaction = () => {

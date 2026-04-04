@@ -9,10 +9,16 @@ const monthNames = {
 
 function BalanceChart() {
   const { transactions } = useApp()
-
+  if (!transactions.length) {
+  return (
+    <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 mb-6 text-gray-500">
+      No data to display
+    </div>
+  )
+}
   const monthlyData = {}
   transactions.forEach(t => {
-    const month = t.date.slice(5, 7)
+    const month = t.date.slice(0, 7)
     if (!monthlyData[month]) monthlyData[month] = 0
     monthlyData[month] += t.type === 'income' ? t.amount : -t.amount
   })
@@ -21,7 +27,7 @@ function BalanceChart() {
   let running = 0
   const chartData = months.map(month => {
     running += monthlyData[month]
-    return { date: monthNames[month], balance: running }
+    return { date: `${monthNames[month.slice(5,7)]} ${month.slice(2,4)}`, balance: running }
   })
 
   return (
@@ -32,7 +38,7 @@ function BalanceChart() {
           <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
           <XAxis dataKey="date" stroke="#9ca3af" />
           <YAxis stroke="#9ca3af" />
-          <Tooltip formatter={(value) => `₹${value.toLocaleString('en-IN')}`} />
+          <Tooltip formatter={(value) => `₹${Number(value).toLocaleString('en-IN')}`} />
           <Line type="monotone" dataKey="balance" stroke="#2563eb" strokeWidth={2} dot={true} />
         </LineChart>
       </ResponsiveContainer>

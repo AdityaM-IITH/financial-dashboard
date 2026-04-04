@@ -31,8 +31,12 @@ function Insights() {
     value: categoryData[key]
   }))
 
-  const highestCategory = chartData.reduce((max, item) =>
-    item.value > max.value ? item : max, chartData[0])
+  const highestCategory =
+  chartData.length > 0 ? chartData.reduce((max, item) =>
+        item.value > max.value ? item : max,
+        chartData[0]
+      )
+    : null;
 
   const expenseOnly = transactions.filter(t => t.type === 'expense')
   const highestExpense = expenseOnly.reduce((max, item) =>
