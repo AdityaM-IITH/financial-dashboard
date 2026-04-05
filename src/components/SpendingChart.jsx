@@ -5,7 +5,15 @@ const COLORS = ['#2563eb', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'
 
 function SpendingChart() {
   const { transactions } = useApp()
-
+  const hasExpenses = transactions.some(t => t.type === 'expense')
+  
+  if (!hasExpenses) {
+    return (
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow p-6 flex items-center justify-center h-[320px] text-gray-500">
+        No expense data to display
+      </div>
+    )
+  }
   const categoryData = {}
   transactions
     .filter(t => t.type === 'expense')

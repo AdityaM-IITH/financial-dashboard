@@ -36,12 +36,12 @@ function Insights() {
         item.value > max.value ? item : max,
         chartData[0]
       )
-    : null;
+    : { name: 'N/A', value: 0 };
 
   const expenseOnly = transactions.filter(t => t.type === 'expense')
-  const highestExpense = expenseArray.length > 0 
-  ? expenseArray.reduce((prev, current) => (prev.amount > current.amount) ? prev : current) 
-  : null;
+  const highestExpense = expenseOnly.length > 0 
+  ? expenseOnly.reduce((prev, current) => (prev.amount > current.amount) ? prev : current) 
+  : { name: 'N/A', amount: 0 };
 
   const income = transactions
     .filter(t => t.type === 'income')
@@ -62,9 +62,10 @@ function Insights() {
       monthlyIncome[month] += t.amount
     })
 
-  const bestMonth = Object.keys(monthlyIncome).reduce((max, month) =>
+  const incomeMonths = Object.keys(monthlyIncome)
+  const bestMonth = incomeMonths.length > 0 ? incomeMonths.reduce((max, month) =>
     monthlyIncome[month] > monthlyIncome[max] ? month : max
-  )
+  ) : null;
 
   const monthlyMap = {}
   transactions.forEach(t => {
@@ -116,12 +117,12 @@ function Insights() {
         </div>
         <div className={cardClass}>
           <p className={labelClass}>Savings Rate</p>
-          <p className={valueClass}>{savingsRate}%</p>
+          <p className={valueClass}>{isNaN(savingsRate) ? 0 : savingsRate}%</p>
         </div>
         <div className={cardClass}>
           <p className={labelClass}>Best Month</p>
-          <p className={valueClass}>{monthNames[bestMonth]}</p>
-          <p className="text-sm text-green-500 mt-1">₹{monthlyIncome[bestMonth].toLocaleString('en-IN')}</p>
+          <p className={valueClass}>{bestMonth ? monthNames[bestMonth] : 'N/A'}</p>
+          <p className="text-sm text-green-500 mt-1">₹{bestMonth ? monthlyIncome[bestMonth].toLocaleString('en-IN') : 0}</p>
         </div>
         {momChange && (
           <div className={`${cardClass} md:col-span-2`}>

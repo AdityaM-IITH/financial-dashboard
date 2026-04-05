@@ -17,8 +17,8 @@ function Transactions() {
 
   const filteredTransactions = transactions
     .filter(t => {
-      const matchesSearch = t.name.toLowerCase().includes(search.toLowerCase()) ||
-        t.category.toLowerCase().includes(search.toLowerCase())
+      const matchesSearch = (t.name?.toLowerCase() || '').includes(search.toLowerCase()) ||
+                      (t.category?.toLowerCase() || '').includes(search.toLowerCase())
       const matchesType = filterType === 'all' || t.type === filterType
       return matchesSearch && matchesType
     })
