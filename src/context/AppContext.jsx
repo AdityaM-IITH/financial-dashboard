@@ -11,7 +11,13 @@ export function AppProvider({ children }) {
   useEffect(() => {
   localStorage.setItem('transactions', JSON.stringify(transactions))
 }, [transactions])
-  const [role, setRole] = useState("viewer")
+  const [role, setRole] = useState(() => {
+  return localStorage.getItem('role') || 'viewer'
+})
+
+useEffect(() => {
+  localStorage.setItem('role', role)
+}, [role])
   const [theme, setTheme] = useState(() => {
   return localStorage.getItem('theme') || 'light'
 })
