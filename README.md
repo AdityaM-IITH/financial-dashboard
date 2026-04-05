@@ -60,7 +60,6 @@ Role-based UI is simulated entirely on the frontend. Admin enables add/delete fu
 
 ## Known Limitations
 - Transaction table requires horizontal scroll on very small screens
-- Role resets to Viewer on page refresh
 - Mock data only, no backend integration
 
 ## License
