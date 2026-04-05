@@ -39,8 +39,9 @@ function Insights() {
     : null;
 
   const expenseOnly = transactions.filter(t => t.type === 'expense')
-  const highestExpense = expenseOnly.reduce((max, item) =>
-    item.amount > max.amount ? item : max, expenseOnly[0])
+  const highestExpense = expenseArray.length > 0 
+  ? expenseArray.reduce((prev, current) => (prev.amount > current.amount) ? prev : current) 
+  : null;
 
   const income = transactions
     .filter(t => t.type === 'income')
