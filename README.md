@@ -20,7 +20,7 @@ npm run dev
 ## Features
 
 ### Dashboard
-- Summary cards — Total Balance, Income, Expenses
+- Summary cards: Total Balance, Income, Expenses
 - Cumulative balance trend (line chart)
 - Spending breakdown by category (pie chart)
 
@@ -52,16 +52,16 @@ npm run dev
 
 ## Approach
 
-State is managed via React Context API — transactions, role, and theme are global while search, filters, and form state are local to their components. This keeps global state minimal and components self-contained.
+State is managed via React Context API, that is, transactions, role, and theme are global while search, filters, and form state are local to their components. This keeps global state minimal and components self-contained.
 
 Chart data is derived on every render using array methods — no separate data store needed. The balance trend uses a cumulative running total for accurate financial representation.
 
-Role-based UI is simulated entirely on the frontend — Admin enables add/delete functionality while Viewer sees read-only data.
+Role-based UI is simulated entirely on the frontend. Admin enables add/delete functionality while Viewer sees read-only data.
 
 ## Known Limitations
 - Transaction table requires horizontal scroll on very small screens
 - Role resets to Viewer on page refresh
-- Mock data only — no backend integration
+- Mock data only, no backend integration
 
 ## License
 MIT
